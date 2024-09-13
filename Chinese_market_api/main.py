@@ -206,6 +206,7 @@ def future_kline_15m(future_code):
 def future_kline_30m(future_code):
     return jsonify(get_kline_by_minutes(future_code, "30"))
 
+
 @app.route('/future/kline_60m/<future_code>', methods=['GET'])
 @cache.cached(timeout=2)
 def future_kline_60m(future_code):
