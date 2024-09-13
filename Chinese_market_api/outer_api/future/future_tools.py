@@ -1,4 +1,5 @@
 import json
+import os.path
 import re
 import time
 import requests
@@ -34,7 +35,7 @@ def get_kline_by_minutes(symbol, minutes):
 
 
 def get_all_futures():
-    with open("futures.json", "r", encoding="utf-8") as file:
+    with open(os.path.join(os.path.dirname(__file__),"futures.json"), "r", encoding="utf-8") as file:
         futures = json.load(file)
         return futures
 

@@ -17,14 +17,18 @@ def get_price_day_tx(code, end_date='', count=10, frequency='1d'):     #日线�
 def get_price_min_tx(code, end_date=None, count=10, frequency='1d'):    #分钟线获取 
     ts=int(frequency[:-1]) if frequency[:-1].isdigit() else 1           #解析K线周期数
     if end_date: end_date=end_date.strftime('%Y-%m-%d') if isinstance(end_date,datetime.date) else end_date.split(' ')[0]        
-    URL=f'http://ifzq.gtimg.cn/appstock/app/kline/mkline?param={code},m{ts},,{count}' 
-    st= json.loads(requests.get(URL).content);       buf=st['data'][code]['m'+str(ts)] 
+    URL=f'http://ifzq.gtimg.cn/appstock/app/kline/mkline?param={code},m{ts},,{count}'
+    st= json.loads(requests.get(URL).content);       buf=st['data'][code]['m'+str(ts)]
     df=pd.DataFrame(buf,columns=['time','open','close','high','low','volume','n1','n2'])   
-    df=df[['time','open','close','high','low','volume']]    
+    df=df[['time','open','close','high','low','volume']]
     df[['open','close','high','low','volume']]=df[['open','close','high','low','volume']].astype('float')
     df.time=pd.to_datetime(df.time);   df.set_index(['time'], inplace=True);   df.index.name=''          #处理索引     
-    df.iloc[-1, 1] = float(st['data'][code]['qt'][code][3])
-    # df['close'][-1]=float(st['data'][code]['qt'][code][3])                #最新基金数据是3位的
+
+    try:
+        df.iloc[-1, 1] = float(st['data'][code]['qt'][code][3])
+        # df['close'][-1]=float(st['data'][code]['qt'][code][3])                #最新基金数据是3位的
+    except:
+        pass
     return df
 
 
@@ -59,7 +63,7 @@ def get_price(code, end_date='',count=10, frequency='1d', fields=[]):        #�
          if frequency in '1m': return get_price_min_tx(xcode,end_date=end_date,count=count,frequency=frequency)
          try:    return get_price_sina(  xcode,end_date=end_date,count=count,frequency=frequency)   #主力   
          except: return get_price_min_tx(xcode,end_date=end_date,count=count,frequency=frequency)   #备用
-        
+
 if __name__ == '__main__':    
     df=get_price('sh000001',frequency='1d',count=10)      #支持'1d'日, '1w'周, '1M'月  
     print('上证指数日线行情\n',df)

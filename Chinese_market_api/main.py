@@ -45,13 +45,12 @@ def kline_1m(bond_code):
     try:
         df = get_price(code=bond_code, frequency="1m", count=200)
         records = df.to_dict(orient='records')
-
+        print(records)
         # 重置索引为列
         records_with_dates = [{'date': idx.strftime('%Y-%m-%d %H:%M:%S'), **record} for idx, record in zip(df.index, records)]
         return jsonify(records_with_dates)
     except Exception as e:
-        app.logger.error(f"Error fetching kline data for {bond_code}: {e}")
-        return f"Error fetching kline data for {bond_code}: {e}"
+        return jsonify([])
 
 
 @app.route('/stock/kline_15m/<bond_code>', methods=['GET'])
@@ -179,8 +178,8 @@ def get_bonds_and_prices():
 '''
 @app.route('/future/futures', methods=['GET'])
 @cache.cached(timeout=60)
-def get_all_futures():
-    return jsonify(future_kline_1m)
+def _get_all_futures():
+    return jsonify(get_all_futures())
 
 @app.route('/future/kline_1m/<future_code>', methods=['GET'])
 @cache.cached(timeout=2)
@@ -217,4 +216,4 @@ def future_kline_60m(future_code):
 
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0', port=5608, debug=False)
+    app.run(host='0.0.0.0', port=5626, debug=False)
