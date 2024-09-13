@@ -16,7 +16,7 @@ cache = Cache(app, config={'CACHE_TYPE': 'simple'})
 A股/国债接口
 '''
 
-@app.route('stock/kline_5m/<bond_code>', methods=['GET'])
+@app.route('/stock/kline_5m/<bond_code>', methods=['GET'])
 @cache.cached(timeout=2)
 def kline_5m(bond_code):
     if not bond_code:
@@ -35,7 +35,7 @@ def kline_5m(bond_code):
         return f"Error fetching kline data for {bond_code}: {e}"
 
 
-@app.route('stock/kline_1m/<bond_code>', methods=['GET'])
+@app.route('/stock/kline_1m/<bond_code>', methods=['GET'])
 @cache.cached(timeout=2)
 def kline_1m(bond_code):
     if not bond_code:
@@ -54,7 +54,7 @@ def kline_1m(bond_code):
         return f"Error fetching kline data for {bond_code}: {e}"
 
 
-@app.route('stock/kline_15m/<bond_code>', methods=['GET'])
+@app.route('/stock/kline_15m/<bond_code>', methods=['GET'])
 @cache.cached(timeout=2)
 def kline_15m(bond_code):
     if not bond_code:
@@ -73,7 +73,7 @@ def kline_15m(bond_code):
         return f"Error fetching kline data for {bond_code}: {e}"
 
 
-@app.route('stock/kline_30m/<bond_code>', methods=['GET'])
+@app.route('/stock/kline_30m/<bond_code>', methods=['GET'])
 @cache.cached(timeout=2)
 def kline_30m(bond_code):
     if not bond_code:
@@ -92,7 +92,7 @@ def kline_30m(bond_code):
         return f"Error fetching kline data for {bond_code}: {e}"
 
 
-@app.route('stock/kline_60m/<bond_code>', methods=['GET'])
+@app.route('/stock/kline_60m/<bond_code>', methods=['GET'])
 @cache.cached(timeout=2)
 def kline_60m(bond_code):
     if not bond_code:
@@ -111,7 +111,7 @@ def kline_60m(bond_code):
         return f"Error fetching kline data for {bond_code}: {e}"
 
 
-@app.route('stock/kline_1d/<bond_code>', methods=['GET'])
+@app.route('/stock/kline_1d/<bond_code>', methods=['GET'])
 @cache.cached(timeout=6000)
 def kline_1d(bond_code):
     if not bond_code:
@@ -130,7 +130,7 @@ def kline_1d(bond_code):
         return f"Error fetching kline data for {bond_code}: {e}"
 
 
-@app.route('stock/kline_1w/<bond_code>', methods=['GET'])
+@app.route('/stock/kline_1w/<bond_code>', methods=['GET'])
 @cache.cached(timeout=6000 * 3)
 def kline_1w(bond_code):
     if not bond_code:
@@ -149,7 +149,7 @@ def kline_1w(bond_code):
         return f"Error fetching kline data for {bond_code}: {e}"
 
 
-@app.route('stock/kline_1M/<bond_code>', methods=['GET'])
+@app.route('/stock/kline_1M/<bond_code>', methods=['GET'])
 @cache.cached(timeout=6000 * 3)
 def kline_1M(bond_code):
     if not bond_code:
@@ -168,7 +168,7 @@ def kline_1M(bond_code):
         return f"Error fetching kline data for {bond_code}: {e}"
 
 
-@app.route('stock/bonds_and_prices', methods=['GET'])
+@app.route('/stock/bonds_and_prices', methods=['GET'])
 @cache.cached(timeout=8)
 def get_bonds_and_prices():
     return jsonify(bonds_and_prices())
@@ -177,39 +177,39 @@ def get_bonds_and_prices():
 '''
 期货接口
 '''
-@app.route('future/futures', methods=['GET'])
+@app.route('/future/futures', methods=['GET'])
 @cache.cached(timeout=60)
 def get_all_futures():
-    return jsonify(get_all_futures)
+    return jsonify(future_kline_1m)
 
-@app.route('future/kline_1m/<future_code>', methods=['GET'])
+@app.route('/future/kline_1m/<future_code>', methods=['GET'])
 @cache.cached(timeout=2)
-def get_all_futures(future_code):
+def future_kline_1m(future_code):
     return jsonify(get_kline_by_minutes(future_code, "1"))
 
-@app.route('future/kline_5m/<future_code>', methods=['GET'])
+@app.route('/future/kline_5m/<future_code>', methods=['GET'])
 @cache.cached(timeout=2)
-def get_all_futures(future_code):
+def future_kline_5m(future_code):
     return jsonify(get_kline_by_minutes(future_code, "5"))
 
-@app.route('future/kline_10m/<future_code>', methods=['GET'])
+@app.route('/future/kline_10m/<future_code>', methods=['GET'])
 @cache.cached(timeout=2)
-def get_all_futures(future_code):
+def future_kline_10m(future_code):
     return jsonify(get_kline_by_minutes(future_code, "10"))
 
-@app.route('future/kline_15m/<future_code>', methods=['GET'])
+@app.route('/future/kline_15m/<future_code>', methods=['GET'])
 @cache.cached(timeout=2)
-def get_all_futures(future_code):
+def future_kline_15m(future_code):
     return jsonify(get_kline_by_minutes(future_code, "15"))
 
-@app.route('future/kline_30m/<future_code>', methods=['GET'])
+@app.route('/future/kline_30m/<future_code>', methods=['GET'])
 @cache.cached(timeout=2)
-def get_all_futures(future_code):
+def future_kline_30m(future_code):
     return jsonify(get_kline_by_minutes(future_code, "30"))
 
-@app.route('future/kline_60m/<future_code>', methods=['GET'])
+@app.route('/future/kline_60m/<future_code>', methods=['GET'])
 @cache.cached(timeout=2)
-def get_all_futures(future_code):
+def future_kline_60m(future_code):
     return jsonify(get_kline_by_minutes(future_code, "60"))
 
 
