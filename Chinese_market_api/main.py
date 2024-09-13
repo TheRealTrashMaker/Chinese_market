@@ -1,17 +1,23 @@
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify
 from flask_caching import Cache
 from flask_cors import CORS
+
 from Chinese_market_api.outer_api.a_stock.All_bonds_and_prices import bonds_and_prices
 from Chinese_market_api.outer_api.a_stock.Ashare import *
+from Chinese_market_api.outer_api.future.future_tools import *
+
 
 app = Flask(__name__)
 CORS(app)
 
 cache = Cache(app, config={'CACHE_TYPE': 'simple'})
 
+'''
+A股/国债接口
+'''
 
 @app.route('stock/kline_5m/<bond_code>', methods=['GET'])
-@cache.cached(timeout=60)
+@cache.cached(timeout=2)
 def kline_5m(bond_code):
     if not bond_code:
         return {
@@ -49,7 +55,7 @@ def kline_1m(bond_code):
 
 
 @app.route('stock/kline_15m/<bond_code>', methods=['GET'])
-@cache.cached(timeout=300)
+@cache.cached(timeout=2)
 def kline_15m(bond_code):
     if not bond_code:
         return {
@@ -68,7 +74,7 @@ def kline_15m(bond_code):
 
 
 @app.route('stock/kline_30m/<bond_code>', methods=['GET'])
-@cache.cached(timeout=600)
+@cache.cached(timeout=2)
 def kline_30m(bond_code):
     if not bond_code:
         return {
@@ -87,7 +93,7 @@ def kline_30m(bond_code):
 
 
 @app.route('stock/kline_60m/<bond_code>', methods=['GET'])
-@cache.cached(timeout=1800)
+@cache.cached(timeout=2)
 def kline_60m(bond_code):
     if not bond_code:
         return {
@@ -125,7 +131,7 @@ def kline_1d(bond_code):
 
 
 @app.route('stock/kline_1w/<bond_code>', methods=['GET'])
-@cache.cached(timeout=6000*3)
+@cache.cached(timeout=6000 * 3)
 def kline_1w(bond_code):
     if not bond_code:
         return {
@@ -144,7 +150,7 @@ def kline_1w(bond_code):
 
 
 @app.route('stock/kline_1M/<bond_code>', methods=['GET'])
-@cache.cached(timeout=6000*3)
+@cache.cached(timeout=6000 * 3)
 def kline_1M(bond_code):
     if not bond_code:
         return {
@@ -166,6 +172,48 @@ def kline_1M(bond_code):
 @cache.cached(timeout=8)
 def get_bonds_and_prices():
     return jsonify(bonds_and_prices())
+
+
+'''
+期货接口
+'''
+@app.route('future/futures', methods=['GET'])
+@cache.cached(timeout=60)
+def get_all_futures():
+    return jsonify(get_all_futures)
+
+@app.route('future/kline_1m/<future_code>', methods=['GET'])
+@cache.cached(timeout=2)
+def get_all_futures(future_code):
+    return jsonify(get_kline_by_minutes(future_code, "1"))
+
+@app.route('future/kline_5m/<future_code>', methods=['GET'])
+@cache.cached(timeout=2)
+def get_all_futures(future_code):
+    return jsonify(get_kline_by_minutes(future_code, "5"))
+
+@app.route('future/kline_10m/<future_code>', methods=['GET'])
+@cache.cached(timeout=2)
+def get_all_futures(future_code):
+    return jsonify(get_kline_by_minutes(future_code, "10"))
+
+@app.route('future/kline_15m/<future_code>', methods=['GET'])
+@cache.cached(timeout=2)
+def get_all_futures(future_code):
+    return jsonify(get_kline_by_minutes(future_code, "15"))
+
+@app.route('future/kline_30m/<future_code>', methods=['GET'])
+@cache.cached(timeout=2)
+def get_all_futures(future_code):
+    return jsonify(get_kline_by_minutes(future_code, "30"))
+
+@app.route('future/kline_60m/<future_code>', methods=['GET'])
+@cache.cached(timeout=2)
+def get_all_futures(future_code):
+    return jsonify(get_kline_by_minutes(future_code, "60"))
+
+
+
 
 
 if __name__ == "__main__":

@@ -33,5 +33,11 @@ def get_kline_by_minutes(symbol, minutes):
         return None
 
 
+def get_all_futures():
+    with open("futures.json", "r", encoding="utf-8") as file:
+        futures = json.load(file)
+        return futures
+
+
 if __name__ == "__main__":
-    print(get_kline_by_minutes("TA2501", "5"))
+    print(get_kline_by_minutes("TA0", "60"))
