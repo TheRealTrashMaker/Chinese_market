@@ -2,9 +2,9 @@ from flask import Flask, jsonify
 from flask_caching import Cache
 from flask_cors import CORS
 
-from Chinese_market_api.outer_api.a_stock.All_bonds_and_prices import bonds_and_prices
-from Chinese_market_api.outer_api.a_stock.Ashare import *
-from Chinese_market_api.outer_api.future.future_tools import *
+from outer_api.a_stock.All_bonds_and_prices import bonds_and_prices
+from outer_api.a_stock.Ashare import *
+from outer_api.future.future_tools import *
 
 
 app = Flask(__name__)
