@@ -39,7 +39,7 @@ def kline_5m(bond_code):
                 "volume": str(record['volume']),
                 "date": str(record['date'])
             })
-        return jsonify(records_with_dates)
+        return jsonify(return_data)
     except Exception as e:
         app.logger.error(f"Error fetching kline data for {bond_code}: {e}")
         return f"Error fetching kline data for {bond_code}: {e}"
