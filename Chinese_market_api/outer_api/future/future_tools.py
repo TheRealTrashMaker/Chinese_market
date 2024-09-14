@@ -29,7 +29,17 @@ def get_kline_by_minutes(symbol, minutes):
     response = requests.get(url, headers=headers, params=params)
     try:
         unclean_data = re.findall("\((.*)\)", response.text)[0]
-        return json.loads(unclean_data)
+        return_data = []
+        for item in json.loads(unclean_data):
+            return_data.append({
+                "Open": item["o"],
+                "Close": item["c"],
+                "High": item["h"],
+                "Low": item["l"],
+                "Date": item["d"],
+                "Volume": item["v"]
+            })
+        return return_data
     except:
         return None
 
