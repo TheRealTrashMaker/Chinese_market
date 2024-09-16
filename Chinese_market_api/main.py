@@ -32,12 +32,12 @@ def kline_5m(bond_code):
         return_data = []
         for record in records_with_dates:
             return_data.append({
-                "close": str(record['close']),
-                "high": str(record['high']),
-                "low": str(record['low']),
-                "open": str(record['open']),
-                "volume": str(record['volume']),
-                "date": str(record['date'])
+                "C": str(record['close']),
+                "H": str(record['high']),
+                "L": str(record['low']),
+                "O": str(record['open']),
+                "V": str(record['volume']),
+                "Tick": str(record['date'])
             })
         return jsonify(return_data)
     except Exception as e:
@@ -61,12 +61,12 @@ def kline_1m(bond_code):
         return_data = []
         for record in records_with_dates:
             return_data.append({
-                "close": str(record['close']),
-                "high": str(record['high']),
-                "low": str(record['low']),
-                "open": str(record['open']),
-                "volume": str(record['volume']),
-                "date": str(record['date'])
+                "C": str(record['close']),
+                "H": str(record['high']),
+                "L": str(record['low']),
+                "O": str(record['open']),
+                "V": str(record['volume']),
+                "Tick": str(record['date'])
             })
         return jsonify(records_with_dates)
     except Exception as e:
@@ -89,12 +89,12 @@ def kline_15m(bond_code):
         return_data = []
         for record in records_with_dates:
             return_data.append({
-                "close": str(record['close']),
-                "high": str(record['high']),
-                "low": str(record['low']),
-                "open": str(record['open']),
-                "volume": str(record['volume']),
-                "date": str(record['date'])
+                "C": str(record['close']),
+                "H": str(record['high']),
+                "L": str(record['low']),
+                "O": str(record['open']),
+                "V": str(record['volume']),
+                "Tick": str(record['date'])
             })
         return jsonify(return_data)
     except Exception as e:
@@ -118,12 +118,12 @@ def kline_30m(bond_code):
         return_data = []
         for record in records_with_dates:
             return_data.append({
-                "close": str(record['close']),
-                "high": str(record['high']),
-                "low": str(record['low']),
-                "open": str(record['open']),
-                "volume": str(record['volume']),
-                "date": str(record['date'])
+                "C": str(record['close']),
+                "H": str(record['high']),
+                "L": str(record['low']),
+                "O": str(record['open']),
+                "V": str(record['volume']),
+                "Tick": str(record['date'])
             })
         return jsonify(return_data)
     except Exception as e:
@@ -147,12 +147,12 @@ def kline_60m(bond_code):
         return_data = []
         for record in records_with_dates:
             return_data.append({
-                "close": str(record['close']),
-                "high": str(record['high']),
-                "low": str(record['low']),
-                "open": str(record['open']),
-                "volume": str(record['volume']),
-                "date": str(record['date'])
+                "C": str(record['close']),
+                "H": str(record['high']),
+                "L": str(record['low']),
+                "O": str(record['open']),
+                "V": str(record['volume']),
+                "Tick": str(record['date'])
             })
         return jsonify(return_data)
     except Exception as e:
@@ -176,12 +176,12 @@ def kline_1d(bond_code):
         return_data = []
         for record in records_with_dates:
             return_data.append({
-                "close": str(record['close']),
-                "high": str(record['high']),
-                "low": str(record['low']),
-                "open": str(record['open']),
-                "volume": str(record['volume']),
-                "date": str(record['date'])
+                "C": str(record['close']),
+                "H": str(record['high']),
+                "L": str(record['low']),
+                "O": str(record['open']),
+                "V": str(record['volume']),
+                "Tick": str(record['date'])
             })
         return jsonify(return_data)
     except Exception as e:
@@ -206,12 +206,12 @@ def kline_1w(bond_code):
         return_data = []
         for record in records_with_dates:
             return_data.append({
-                "close": str(record['close']),
-                "high": str(record['high']),
-                "low": str(record['low']),
-                "open": str(record['open']),
-                "volume": str(record['volume']),
-                "date": str(record['date'])
+                "C": str(record['close']),
+                "H": str(record['high']),
+                "L": str(record['low']),
+                "O": str(record['open']),
+                "V": str(record['volume']),
+                "Tick": str(record['date'])
             })
         return jsonify(return_data)
     except Exception as e:
@@ -235,12 +235,12 @@ def kline_1M(bond_code):
         return_data = []
         for record in records_with_dates:
             return_data.append({
-                "close": str(record['close']),
-                "high": str(record['high']),
-                "low": str(record['low']),
-                "open": str(record['open']),
-                "volume": str(record['volume']),
-                "date": str(record['date'])
+                "C": str(record['close']),
+                "H": str(record['high']),
+                "L": str(record['low']),
+                "O": str(record['open']),
+                "V": str(record['volume']),
+                "Tick": str(record['date'])
             })
         return jsonify(return_data)
     except Exception as e:

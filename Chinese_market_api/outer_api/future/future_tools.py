@@ -32,12 +32,12 @@ def get_kline_by_minutes(symbol, minutes):
         return_data = []
         for item in json.loads(unclean_data):
             return_data.append({
-                "open": item["o"],
-                "close": item["c"],
-                "high": item["h"],
-                "low": item["l"],
-                "date": item["d"],
-                "volume": item["v"]
+                "O": item["o"],
+                "C": item["c"],
+                "H": item["h"],
+                "L": item["l"],
+                "Tick": item["d"],
+                "V": item["v"]
             })
         return return_data
     except:
