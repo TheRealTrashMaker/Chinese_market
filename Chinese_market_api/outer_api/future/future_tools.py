@@ -2,6 +2,8 @@ import json
 import os.path
 import re
 import time
+from datetime import datetime
+
 import requests
 
 
@@ -31,12 +33,15 @@ def get_kline_by_minutes(symbol, minutes):
         unclean_data = re.findall("\((.*)\)", response.text)[0]
         return_data = []
         for item in json.loads(unclean_data):
+            date_time_obj = datetime.strptime(item["d"], '%Y-%m-%d %H:%M:%S')
+            # 将datetime对象转换为十位数时间戳
+            timestamp = int(date_time_obj.timestamp())
             return_data.append({
                 "O": item["o"],
                 "C": item["c"],
                 "H": item["h"],
                 "L": item["l"],
-                "Tick": item["d"],
+                "Tick": str(timestamp),
                 "V": item["v"]
             })
         return return_data

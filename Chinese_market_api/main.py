@@ -31,13 +31,17 @@ def kline_5m(bond_code):
         records_with_dates = [{'date': idx.strftime('%Y-%m-%d %H:%M:%S'), **record} for idx, record in zip(df.index, records)]
         return_data = []
         for record in records_with_dates:
+            date_time_obj = datetime.strptime(str(record['date']), '%Y-%m-%d %H:%M:%S')
+            # 将datetime对象转换为十位数时间戳
+            timestamp = int(date_time_obj.timestamp())
+            print(timestamp)
             return_data.append({
                 "C": str(record['close']),
                 "H": str(record['high']),
                 "L": str(record['low']),
                 "O": str(record['open']),
                 "V": str(record['volume']),
-                "Tick": str(record['date'])
+                "Tick": str(timestamp)
             })
         return jsonify(return_data)
     except Exception as e:
@@ -60,15 +64,19 @@ def kline_1m(bond_code):
         records_with_dates = [{'date': idx.strftime('%Y-%m-%d %H:%M:%S'), **record} for idx, record in zip(df.index, records)]
         return_data = []
         for record in records_with_dates:
+            date_time_obj = datetime.strptime(str(record['date']), '%Y-%m-%d %H:%M:%S')
+            # 将datetime对象转换为十位数时间戳
+            timestamp = int(date_time_obj.timestamp())
+
             return_data.append({
                 "C": str(record['close']),
                 "H": str(record['high']),
                 "L": str(record['low']),
                 "O": str(record['open']),
                 "V": str(record['volume']),
-                "Tick": str(record['date'])
+                "Tick": str(timestamp)
             })
-        return jsonify(records_with_dates)
+        return jsonify(return_data)
     except Exception as e:
         return jsonify([])
 
@@ -88,13 +96,17 @@ def kline_15m(bond_code):
         records_with_dates = [{'date': idx.strftime('%Y-%m-%d %H:%M:%S'), **record} for idx, record in zip(df.index, records)]
         return_data = []
         for record in records_with_dates:
+            date_time_obj = datetime.strptime(str(record['date']), '%Y-%m-%d %H:%M:%S')
+            # 将datetime对象转换为十位数时间戳
+            timestamp = int(date_time_obj.timestamp())
+
             return_data.append({
                 "C": str(record['close']),
                 "H": str(record['high']),
                 "L": str(record['low']),
                 "O": str(record['open']),
                 "V": str(record['volume']),
-                "Tick": str(record['date'])
+                "Tick": str(timestamp)
             })
         return jsonify(return_data)
     except Exception as e:
@@ -117,13 +129,17 @@ def kline_30m(bond_code):
         records_with_dates = [{'date': idx.strftime('%Y-%m-%d %H:%M:%S'), **record} for idx, record in zip(df.index, records)]
         return_data = []
         for record in records_with_dates:
+            date_time_obj = datetime.strptime(str(record['date']), '%Y-%m-%d %H:%M:%S')
+            # 将datetime对象转换为十位数时间戳
+            timestamp = int(date_time_obj.timestamp())
+
             return_data.append({
                 "C": str(record['close']),
                 "H": str(record['high']),
                 "L": str(record['low']),
                 "O": str(record['open']),
                 "V": str(record['volume']),
-                "Tick": str(record['date'])
+                "Tick": str(timestamp)
             })
         return jsonify(return_data)
     except Exception as e:
@@ -146,13 +162,17 @@ def kline_60m(bond_code):
         records_with_dates = [{'date': idx.strftime('%Y-%m-%d %H:%M:%S'), **record} for idx, record in zip(df.index, records)]
         return_data = []
         for record in records_with_dates:
+            date_time_obj = datetime.strptime(str(record['date']), '%Y-%m-%d %H:%M:%S')
+            # 将datetime对象转换为十位数时间戳
+            timestamp = int(date_time_obj.timestamp())
+
             return_data.append({
                 "C": str(record['close']),
                 "H": str(record['high']),
                 "L": str(record['low']),
                 "O": str(record['open']),
                 "V": str(record['volume']),
-                "Tick": str(record['date'])
+                "Tick": str(timestamp)
             })
         return jsonify(return_data)
     except Exception as e:
@@ -175,13 +195,17 @@ def kline_1d(bond_code):
         records_with_dates = [{'date': idx.strftime('%Y-%m-%d %H:%M:%S'), **record} for idx, record in zip(df.index, records)]
         return_data = []
         for record in records_with_dates:
+            date_time_obj = datetime.strptime(str(record['date']), '%Y-%m-%d %H:%M:%S')
+            # 将datetime对象转换为十位数时间戳
+            timestamp = int(date_time_obj.timestamp())
+
             return_data.append({
                 "C": str(record['close']),
                 "H": str(record['high']),
                 "L": str(record['low']),
                 "O": str(record['open']),
                 "V": str(record['volume']),
-                "Tick": str(record['date'])
+                "Tick": str(timestamp)
             })
         return jsonify(return_data)
     except Exception as e:
@@ -205,13 +229,17 @@ def kline_1w(bond_code):
         records_with_dates = [{'date': idx.strftime('%Y-%m-%d %H:%M:%S'), **record} for idx, record in zip(df.index, records)]
         return_data = []
         for record in records_with_dates:
+            date_time_obj = datetime.strptime(str(record['date']), '%Y-%m-%d %H:%M:%S')
+            # 将datetime对象转换为十位数时间戳
+            timestamp = int(date_time_obj.timestamp())
+
             return_data.append({
                 "C": str(record['close']),
                 "H": str(record['high']),
                 "L": str(record['low']),
                 "O": str(record['open']),
                 "V": str(record['volume']),
-                "Tick": str(record['date'])
+                "Tick": str(timestamp)
             })
         return jsonify(return_data)
     except Exception as e:
@@ -234,13 +262,17 @@ def kline_1M(bond_code):
         records_with_dates = [{'date': idx.strftime('%Y-%m-%d %H:%M:%S'), **record} for idx, record in zip(df.index, records)]
         return_data = []
         for record in records_with_dates:
+            date_time_obj = datetime.strptime(str(record['date']), '%Y-%m-%d %H:%M:%S')
+            # 将datetime对象转换为十位数时间戳
+            timestamp = int(date_time_obj.timestamp())
+
             return_data.append({
                 "C": str(record['close']),
                 "H": str(record['high']),
                 "L": str(record['low']),
                 "O": str(record['open']),
                 "V": str(record['volume']),
-                "Tick": str(record['date'])
+                "Tick": str(timestamp)
             })
         return jsonify(return_data)
     except Exception as e:
