@@ -297,6 +297,7 @@ def _get_all_futures():
 @app.route('/future/kline_1m/<future_code>', methods=['GET'])
 @cache.cached(timeout=2)
 def future_kline_1m(future_code):
+    print(future_code)
     return jsonify(get_kline_by_minutes(future_code, "1"))
 
 @app.route('/future/kline_5m/<future_code>', methods=['GET'])
